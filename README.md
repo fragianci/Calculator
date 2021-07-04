@@ -1,4 +1,4 @@
 # Calculator
 
 Some type of exercise on Angular
-Link al sito: https://fragianci.github.io/Calculator/
+Link at the calculator: https://fragianci.github.io/Calculator/
