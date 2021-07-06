@@ -1,20 +1,24 @@
 <div class="container">
     <div class="row d-flex flex-wrap">
         <!-- Operands -->
-        <div class="row row-operands">
+        <div class="row d-flex justify-content-around row-operands">
             <div class="col-3" *ngFor="let op of operands">
-                <button class="btn btn-light operands">
+                <button 
+                class="btn btn-light operands"
+                (click)="catchOperator(op)">
                     <p>{{op}}</p>
                 </button>
             </div>
         </div>
         <!-- Numbers -->
         <div class="col-4" *ngFor="let n of numbers">
-            <button class="btn btn-light numbers">
+            <button 
+            class="btn btn-light numbers"
+            (click)="catchMyNum(n)">
                 <p>{{n}}</p>
             </button>
         </div>
-
+    </div>
         <div class="row">
             <div class="col-4">
                 <button class="btn btn-light operands">
@@ -27,10 +31,11 @@
                 </button>
             </div>
             <div class="col-4">
-                <button class="btn btn-light operands">
+                <button 
+                class="btn btn-light operands"
+                (click)="showResult()">
                     <p>=</p>
                 </button>
             </div>
         </div>
-    </div>
 </div>
