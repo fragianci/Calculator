@@ -1,60 +1,70 @@
-import { Component, OnInit } from '@angular/core';
+import { OnInit, Component } from '@angular/core';
+import { OpNumberService } from './op-number.service';
+
+interface opNumber {
+  num: number;
+  op: string;
+}
 
 @Component({
   selector: 'app-operations-panel',
   templateUrl: './operations-panel.component.html',
   styleUrls: ['./operations-panel.component.scss']
 })
+
 export class OperationsPanelComponent implements OnInit {
   numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9];
   operands = ['+', '-', 'x', '/'];
-  opNumbers: number[] = [];
-  result: number = 0;
-  myOperator: string = ''
+  result = 0;
+  myNumber = 0;
+  opNumbers: opNumber[] = [];
 
-  constructor() { }
+  constructor(private calculatorService: OpNumberService) { }
 
   ngOnInit(): void {
   }
 
   catchMyNum(number: number){
-    this.opNumbers.push(number);
-    console.log(this.opNumbers)
+    this.myNumber = number
   }
 
   catchOperator(op: string){
-    this.myOperator = op;
+    let num: number = this.myNumber;
+    let operationNumber = {num, op};
+    this.opNumbers.push(operationNumber);
+    console.log(this.opNumbers);
+    for(let opnum of this.opNumbers){
+      if(opnum.op === "="){
+        this.showResult();
+      }
+    }
   }
 
   showResult(){
-    let result: number = 0;
     if(this.opNumbers.length > 0){
-      switch (this.myOperator){
-        case '+':
-          for(let n of this.opNumbers){
-            result += n;
-          }
-          break;
-        case '-':
-          for(let n of this.opNumbers){
-            result += +n;
-          }
-          break;
-        case 'x':
-          for(let n of this.opNumbers){
-            result += +n;
-          }
-          break;
-        case '/':
-          for(let n of this.opNumbers){
-            result += +n;
-          }
-          break;
+      for(let opnum of this.opNumbers){
+        let i = 0;
+        switch (opnum.op){
+          case '+':
+            this.result = (opnum.num + this.opNumbers[i+1].num);
+            i++;
+            break;
+          case '-':
+            this.result = (opnum.num - this.opNumbers[i+1].num);
+            i++;
+            break;
+          case 'x':
+            this.result = (opnum.num * this.opNumbers[i+1].num);
+            i++;
+            break;
+          case '/':
+            this.result = (opnum.num / this.opNumbers[i+1].num);
+            i++;
+            break;
+        }
       }
     }
-    this.result = result;
-
-    console.log(this.result);
+    console.log("R: " + this.result);
   }
 
 }

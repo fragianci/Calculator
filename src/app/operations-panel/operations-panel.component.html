@@ -2,7 +2,7 @@
     <div class="row d-flex flex-wrap">
         <!-- Operands -->
         <div class="row d-flex justify-content-around row-operands">
-            <div class="col-3" *ngFor="let op of operands">
+            <div class="col-3" *ngFor="let op of operands; let i = index">
                 <button 
                 class="btn btn-light operands"
                 (click)="catchOperator(op)">
@@ -33,7 +33,7 @@
             <div class="col-4">
                 <button 
                 class="btn btn-light operands"
-                (click)="showResult()">
+                (click)="catchOperator('=')">
                     <p>=</p>
                 </button>
             </div>
