@@ -17,35 +17,43 @@ export class OperationsPanelComponent implements OnInit {
   operands = ['+', '-', 'x', '/'];
   result = 0;
   myNumber = 0;
+  numberPressed = false;
   opNumbers: opNumber[] = [];
 
   constructor(private calculatorService: OpNumberService) { }
 
   ngOnInit(): void { }
 
+  //Non prende i numeri con più cifre
   catchMyNum(number: number){
-    this.myNumber = number
+    this.myNumber = number;
+    this.numberPressed = true;
   }
 
   catchOperation(op: string) {
-    let num: number = this.myNumber;
-    let operationNumber = {num, op};
-    this.opNumbers.push(operationNumber);
-    console.log(this.opNumbers);
+    if(this.numberPressed){
+      let num: number = this.myNumber;
+      let operationNumber = {num, op};
+      this.opNumbers.push(operationNumber);
+      console.log(this.opNumbers);
+    }
     if (this.opNumbers.length === 1) {
       this.result = this.opNumbers[0].num;
+    }
+    if(!this.numberPressed && op == '='){
+      this.opNumbers[length-1].op = '=';
     }
     for (let opnum of this.opNumbers) {
       if(opnum.op === "="){
         this.showResult();
       }
     }
+    this.numberPressed = false;
   }
 
   showResult() {
     let i = 0;
     for (let opnum of this.opNumbers) {
-      
       switch (opnum.op){
         case '+':
           this.result += this.opNumbers[i+1].num;
