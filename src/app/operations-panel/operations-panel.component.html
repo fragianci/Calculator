@@ -3,16 +3,16 @@
         <!-- Operands -->
         <div class="row d-flex justify-content-around row-operands">
             <div class="col-3" *ngFor="let op of operands; let i = index">
-                <button 
+                <button
                 class="btn btn-light operands"
-                (click)="catchOperator(op)">
+                (click)="catchOperation(op)">
                     <p>{{op}}</p>
                 </button>
             </div>
         </div>
         <!-- Numbers -->
         <div class="col-4" *ngFor="let n of numbers">
-            <button 
+            <button
             class="btn btn-light numbers"
             (click)="catchMyNum(n)">
                 <p>{{n}}</p>
@@ -31,9 +31,9 @@
                 </button>
             </div>
             <div class="col-4">
-                <button 
+                <button
                 class="btn btn-light operands"
-                (click)="catchOperator('=')">
+                (click)="catchOperation('=')">
                     <p>=</p>
                 </button>
             </div>

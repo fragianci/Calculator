@@ -21,50 +21,51 @@ export class OperationsPanelComponent implements OnInit {
 
   constructor(private calculatorService: OpNumberService) { }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void { }
 
   catchMyNum(number: number){
     this.myNumber = number
   }
 
-  catchOperator(op: string){
+  catchOperation(op: string) {
     let num: number = this.myNumber;
     let operationNumber = {num, op};
     this.opNumbers.push(operationNumber);
     console.log(this.opNumbers);
-    for(let opnum of this.opNumbers){
+    if (this.opNumbers.length === 1) {
+      this.result = this.opNumbers[0].num;
+    }
+    for (let opnum of this.opNumbers) {
       if(opnum.op === "="){
         this.showResult();
       }
     }
   }
 
-  showResult(){
-    if(this.opNumbers.length > 0){
-      for(let opnum of this.opNumbers){
-        let i = 0;
-        switch (opnum.op){
-          case '+':
-            this.result = (opnum.num + this.opNumbers[i+1].num);
-            i++;
-            break;
-          case '-':
-            this.result = (opnum.num - this.opNumbers[i+1].num);
-            i++;
-            break;
-          case 'x':
-            this.result = (opnum.num * this.opNumbers[i+1].num);
-            i++;
-            break;
-          case '/':
-            this.result = (opnum.num / this.opNumbers[i+1].num);
-            i++;
-            break;
-        }
+  showResult() {
+    let i = 0;
+    for (let opnum of this.opNumbers) {
+      
+      switch (opnum.op){
+        case '+':
+          this.result += this.opNumbers[i+1].num;
+          i++;
+          break;
+        case '-':
+          this.result -= this.opNumbers[i+1].num;
+          i++;
+          break;
+        case 'x':
+          this.result *= this.opNumbers[i+1].num;
+          i++;
+          break;
+        case '/':
+          this.result /= this.opNumbers[i+1].num;
+          i++;
+          break;
       }
     }
-    console.log("R: " + this.result);
+    console.log("Result: " + this.result);
   }
 
 }
