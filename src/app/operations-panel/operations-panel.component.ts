@@ -19,7 +19,6 @@ export class OperationsPanelComponent implements OnInit {
   myNumber = 0;
   ciphers: string[] = [];
   numberPressed = false;
-  equalPressed = false;
   opNumbers: opNumber[] = [];
 
   constructor(private calculatorService: OpNumberService) { }
@@ -68,7 +67,6 @@ export class OperationsPanelComponent implements OnInit {
 
   showResult() {
     let i = 0;
-    this.equalPressed = true;
     for (let opnum of this.opNumbers) {
       switch (opnum.op){
         case '+':
