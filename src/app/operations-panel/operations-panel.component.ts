@@ -43,10 +43,10 @@ export class OperationsPanelComponent implements OnInit {
       this.opNumbers.push(operationNumber);
       // console.log(this.opNumbers);
     } else {
-      if (op === '=') {
+      if (op === '=') { //+=
         let length = this.opNumbers.length - 1
         this.opNumbers[length].op = '=';
-      } else {
+      } else {  //=+
         let num = this.result;
         let operationNumber = {num, op};
         this.opNumbers.push(operationNumber);
