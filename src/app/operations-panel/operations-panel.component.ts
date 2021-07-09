@@ -17,31 +17,45 @@ export class OperationsPanelComponent implements OnInit {
   operands = ['+', '-', 'x', '/'];
   result = 0;
   myNumber = 0;
+  ciphers: string[] = [];
   numberPressed = false;
+  equalPressed = false;
   opNumbers: opNumber[] = [];
 
   constructor(private calculatorService: OpNumberService) { }
 
   ngOnInit(): void { }
 
-  //Non prende i numeri con più cifre
   catchMyNum(number: number){
-    this.myNumber = number;
+    this.ciphers.push(number.toString());
+    let multiNum: string = '';
+    for (let cipher of this.ciphers) {
+      multiNum += cipher;
+    }
     this.numberPressed = true;
+    this.myNumber = (+multiNum);
   }
 
+  //Mostrare il risultato tramite string interpolation
   catchOperation(op: string) {
     if(this.numberPressed){
       let num: number = this.myNumber;
       let operationNumber = {num, op};
       this.opNumbers.push(operationNumber);
-      console.log(this.opNumbers);
+      // console.log(this.opNumbers);
+    } else {
+      if (op === '=') {
+        let length = this.opNumbers.length - 1
+        this.opNumbers[length].op = '=';
+      } else {
+        let num = this.result;
+        let operationNumber = {num, op};
+        this.opNumbers.push(operationNumber);
+        // console.log(this.opNumbers);
+      }
     }
     if (this.opNumbers.length === 1) {
       this.result = this.opNumbers[0].num;
-    }
-    if(!this.numberPressed && op == '='){
-      this.opNumbers[length-1].op = '=';
     }
     for (let opnum of this.opNumbers) {
       if(opnum.op === "="){
@@ -49,10 +63,12 @@ export class OperationsPanelComponent implements OnInit {
       }
     }
     this.numberPressed = false;
+    this.ciphers.splice(0);
   }
 
   showResult() {
     let i = 0;
+    this.equalPressed = true;
     for (let opnum of this.opNumbers) {
       switch (opnum.op){
         case '+':
@@ -73,6 +89,8 @@ export class OperationsPanelComponent implements OnInit {
           break;
       }
     }
+    // console.log(this.opNumbers)
+    this.opNumbers.splice(0);
     console.log("Result: " + this.result);
   }
 
