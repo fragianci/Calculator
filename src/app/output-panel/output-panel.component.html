@@ -1,3 +1,7 @@
 <div>
-  <p>{{result}}</p>
+  <p *ngFor = 'let opNumber of opNumbers'>
+    {{opNumber.num}}{{opNumber.op}}
+  </p>
+  <p *ngIf="!opNumbers || result">{{result}}</p>
 </div>
+

@@ -2,6 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { OpNumberService } from '../op-number.service';
 
+interface opNumber {
+  num: number;
+  op: string;
+}
+
 @Component({
   selector: 'app-output-panel',
   templateUrl: './output-panel.component.html',
@@ -9,17 +14,18 @@ import { OpNumberService } from '../op-number.service';
 })
 export class OutputPanelComponent implements OnInit {
   result = 0;
-  opNumbers: Subscription;
+  opNumbers: opNumber[];
   resultSub: Subscription;
+  opNumbersSub: Subscription;
   constructor(private calculatorService: OpNumberService) { }
 
   ngOnInit(): void {
-    this.calculatorService.opNumbersEmitted.subscribe(
+    this.opNumbersSub = this.calculatorService.opNumbersEmitted.subscribe(
       opNumbers => {
-
+        this.opNumbers = opNumbers.slice()
       }
     )
-    this.calculatorService.resultEmitted.subscribe(
+    this.resultSub = this.calculatorService.resultEmitted.subscribe(
       (result: number) => {
         this.result = result;
       }
