@@ -16,6 +16,16 @@ button{
     border: 1px solid pink;
 }
 
+.refresh{
+  background-color: lightblue;
+  margin-top: 10px;
+  font-size: 25px
+}
+
+.refresh:hover{
+  background-color: rgb(75, 209, 253);
+}
+
 .row-operands{
     margin-bottom: 10px;
 }

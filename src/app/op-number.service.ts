@@ -17,8 +17,9 @@ export class OpNumberService {
   numberPressed = false;
   opNumbers: opNumber[] = [];
   opNumbersEmitted = new Subject<opNumber[]>();
-
-  constructor() { }
+  showResultCalled = false;
+  refreshString = "Refresh"
+  refresh = new Subject<string>();
 
   catchMyNum(number: number) {
     this.ciphers.push(number.toString());
@@ -28,7 +29,6 @@ export class OpNumberService {
     }
     this.numberPressed = true;
     this.myNumber = (+multiNum);
-    return this.myNumber;
   }
 
   //Mostrare il risultato tramite string interpolation
@@ -42,7 +42,7 @@ export class OpNumberService {
       if (op === '=') { //+=
         let length = this.opNumbers.length - 1
         this.opNumbers[length].op = '=';
-      } else {  //=+
+      } else {  //=+ o ++
         let num = this.result;
         let operationNumber = { num, op };
         this.opNumbers.push(operationNumber);
@@ -59,7 +59,9 @@ export class OpNumberService {
     }
     this.numberPressed = false;
     this.ciphers.splice(0);
-    this.opNumbersEmitted.next(this.opNumbers);
+    if (this.opNumbers) {
+      this.opNumbersEmitted.next(this.opNumbers)
+    }
   }
 
   showResult() {
@@ -85,7 +87,8 @@ export class OpNumberService {
       }
     }
     console.log(this.opNumbers)
-    // this.opNumbers.splice(0);
+    this.refreshString = "Refresh for good calculus"
+    this.refresh.next(this.refreshString);
     this.resultEmitted.next(this.result)
   }
 }
