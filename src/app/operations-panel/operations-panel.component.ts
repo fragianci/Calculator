@@ -26,6 +26,10 @@ export class OperationsPanelComponent implements OnInit {
     this.calculatorService.catchMyNum(number);
   }
 
+  commaTriggered(){
+    this.calculatorService.commaTriggered();
+  }
+
   catchOperation(op: string) {
     this.calculatorService.catchOperation(op)
   }

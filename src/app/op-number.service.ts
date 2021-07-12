@@ -21,8 +21,8 @@ export class OpNumberService {
   refreshString = "Refresh"
   refresh = new Subject<string>();
 
-  catchMyNum(number: number) {
-    this.ciphers.push(number.toString());
+  catchMyNum(num: number) {
+    this.ciphers.push(num.toString());
     let multiNum: string = '';
     for (let cipher of this.ciphers) {
       multiNum += cipher;
@@ -31,7 +31,10 @@ export class OpNumberService {
     this.myNumber = (+multiNum);
   }
 
-  //Mostrare il risultato tramite string interpolation
+  commaTriggered(){
+    this.ciphers.push('.');
+  }
+
   catchOperation(op: string) {
     if (this.numberPressed) {
       let num: number = this.myNumber;
@@ -81,7 +84,6 @@ export class OpNumberService {
           break;
       }
     }
-    console.log(this.opNumbers)
     this.refreshString = "Refresh for good calculus"
     this.refresh.next(this.refreshString);
     this.resultEmitted.next(this.result)
