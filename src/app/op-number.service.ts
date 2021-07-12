@@ -16,6 +16,7 @@ export class OpNumberService {
   ciphers: string[] = [];
   numberPressed = false;
   opNumbers: opNumber[] = [];
+  opNumbersEmitted = new Subject<opNumber[]>();
 
   constructor() { }
 
@@ -58,6 +59,7 @@ export class OpNumberService {
     }
     this.numberPressed = false;
     this.ciphers.splice(0);
+    this.opNumbersEmitted.next(this.opNumbers);
   }
 
   showResult() {

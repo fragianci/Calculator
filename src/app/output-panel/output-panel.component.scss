@@ -1,6 +1,8 @@
 div{
   border: 1px solid gray;
+  border-radius: 10px;
   margin: 10px;
   display: flex;
-  justify-content: flex-end;
+  flex-direction: column;
+  align-items: center;
 }

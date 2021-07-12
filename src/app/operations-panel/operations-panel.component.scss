@@ -1,10 +1,15 @@
 button{
-    padding: 25px;
+    padding: 30px 45px;
+    border-radius: 15px
 }
 
 .numbers{
     margin-bottom: 15px;
     background-color: salmon;
+}
+
+.numbers:hover{
+  background-color: rgb(255, 188, 181);
 }
 
 .operands{
@@ -13,4 +18,8 @@ button{
 
 .row-operands{
     margin-bottom: 10px;
+}
+
+.operands:hover{
+  background-color: pink;
 }

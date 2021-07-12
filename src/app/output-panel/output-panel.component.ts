@@ -9,10 +9,16 @@ import { OpNumberService } from '../op-number.service';
 })
 export class OutputPanelComponent implements OnInit {
   result = 0;
+  opNumbers: Subscription;
   resultSub: Subscription;
   constructor(private calculatorService: OpNumberService) { }
 
   ngOnInit(): void {
+    this.calculatorService.opNumbersEmitted.subscribe(
+      opNumbers => {
+
+      }
+    )
     this.calculatorService.resultEmitted.subscribe(
       (result: number) => {
         this.result = result;
