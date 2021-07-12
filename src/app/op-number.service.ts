@@ -42,11 +42,6 @@ export class OpNumberService {
       if (op === '=') { //+=
         let length = this.opNumbers.length - 1
         this.opNumbers[length].op = '=';
-      } else {  //=+ o ++
-        let num = this.result;
-        let operationNumber = { num, op };
-        this.opNumbers.push(operationNumber);
-        // console.log(this.opNumbers);
       }
     }
     if (this.opNumbers.length === 1) {
