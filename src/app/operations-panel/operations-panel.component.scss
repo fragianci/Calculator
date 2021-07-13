@@ -34,9 +34,9 @@ background-color: rgb(75, 209, 253);
 background-color: pink;
 }
 
-@media only screen and (max-width: 480px) {
+@media only screen and (max-width: 430px) {
     button{
-      padding: 5px 20px;
+      padding: 0 15px;
     }
 
     .numbers{
