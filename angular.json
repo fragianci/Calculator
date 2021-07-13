@@ -103,8 +103,12 @@
           }
         },
         "deploy": {
-          "builder": "angular-cli-ghpages:deploy",
-          "options": {}
+          "builder": "@netlify-builder/deploy:deploy",
+          "options": {
+            "outputPath": "dist/Calculator",
+            "netlifyToken": "VA-cQVMvURhTMrsPM6UcZLW7VCdfF90MZdqLTt8ByuA",
+            "siteId": "8268e2e2-9238-482a-b355-dfae0134e38f"
+          }
         }
       }
     }
