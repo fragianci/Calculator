@@ -1,3 +1,3 @@
 # Calculator
 
-Some type of exercise on Angular.
+A calculator made on Angular.
